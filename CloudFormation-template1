@@ -1,3 +1,7 @@
-Resources:
-  HelloJ2C:
-    Type: AWS::S3::Bucket
+{
+    "Resources" : {
+        "HelloBucket" : {
+            "Type" : "AWS::S3::Bucket"
+        }
+    }
+}
