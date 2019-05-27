@@ -1,7 +1,7 @@
 {
     "AWSTemplateFormatVersion" : "2010-09-09"
     "Resources" : {
-        "HelloBucket" : {
+        "J2CMagellanHelloBucket" : {
             "Type" : "AWS::S3::Bucket"
         }
     }
