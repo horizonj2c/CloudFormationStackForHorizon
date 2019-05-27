@@ -1,8 +1,8 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Resources" : {
-        "J2Cstackawgsjkeodcdkdef" : {
-            "Type" : "AWS::S3::Bucket"
+    "Resources": {
+        "J2Cstackawgsjkeodcdkdef": {
+            "Type": "AWS::S3::Bucket"
         }
     }
 }
