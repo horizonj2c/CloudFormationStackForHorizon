@@ -1,4 +1,4 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  J2Cstackawgsjkeodcd:
+  J2Cstackawgsjkeod:
     Type: 'AWS::S3::Bucket'
