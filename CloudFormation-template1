@@ -1,4 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  J2Cnewbucket12345678:
-    Type: 'AWS::S3::Bucket'
+  firstEC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-08c5dd5d585629c8f
