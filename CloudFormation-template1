@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  MyEC2Instance:
+  MyEC2Instance2:
     Type: "AWS::EC2::Instance"
     Properties:
       ImageId: "ami-030dbca661d402413"
