@@ -9,16 +9,16 @@ Resources:
         -
           Key: "Name"
           Value: "TestCloudFormation" 
-
-Resources:
   MySubnet1:
     Type: "AWS::EC2::Subnet"
     Properties:
-    AssignIpv6AddressOnCreation: Boolean
-    AvailabilityZone: String
-    CidrBlock: String
-    Ipv6CidrBlock: String
-    MapPublicIpOnLaunch: Boolean
-  Tags:
-    - Resource Tag
-  VpcId: String
+      AssignIpv6AddressOnCreation: False
+      AvailabilityZone: 
+      CidrBlock: 172.31.255.0/16
+      Ipv6CidrBlock: String
+      MapPublicIpOnLaunch: Boolean
+      Tags:
+        - 
+          Key: "Resource"
+          Value: "Tag"
+      VpcId: String
