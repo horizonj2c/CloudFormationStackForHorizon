@@ -5,7 +5,3 @@ Resources:
     Properties:
       ImageId: "ami-030dbca661d402413"
       InstanceType: "t2.micro"
-      Tags: 
-        - 
-          Key: "Name" 
-          Value: "TestCloudFormation"
