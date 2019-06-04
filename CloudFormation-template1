@@ -32,7 +32,7 @@ Resources:
       Tags:
         - 
           Key: Name
-          Value: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]         
+          Value: !Join ['', [!Ref "AWS::StackName", "-PublicSubnet" ]]         
  # Internet access for the VPC     
   InternetGateway:
     Type: AWS::EC2::InternetGateway
