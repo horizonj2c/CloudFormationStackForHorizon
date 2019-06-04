@@ -153,7 +153,7 @@ Resources:
     Condition: BuildMyPublicSubnet1
     DependsOn: AttachGateway
     Properties:
-      GroupName: !Join ['PublicSG-', [!Ref "AWS::StackName"]]
+ #     GroupName: !Join ['PublicSG-', [!Ref "AWS::StackName"]]
       GroupDescription: Enable internet access but ony on port 22
       VpcId: !Ref MyVPC1
       SecurityGroupIngress:
@@ -178,7 +178,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Condition: BuildMyPrivateSubnet1
     Properties:
-      GroupName: !Join ['PrivateSG-', [!Ref "AWS::StackName"]]
+  #    GroupName: !Join ['PrivateSG-', [!Ref "AWS::StackName"]]
       GroupDescription: Enable communication inside the VPC
       VpcId: !Ref MyVPC1
       SecurityGroupIngress:
