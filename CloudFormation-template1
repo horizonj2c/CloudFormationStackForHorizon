@@ -79,14 +79,31 @@ Resources:
       Tags:
       - Key: Name
         Value: Private
-  PrivateRoute1:            # Private route table can access web via NAT (created below)
+  # Private route table routing to NAT Gateway
+  PrivateRoute1:            
     Type: AWS::EC2::Route
     Properties:
       RouteTableId: !Ref PrivateRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       # Route traffic through the NAT Gateway:
       NatGatewayId: !Ref NATGateway
-  
+  # Attach the public subnets to public route tables,  
+  PublicSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref MyPublicSubnet1
+      RouteTableId: !Ref PublicRouteTable
+  # Attach the private subnets to private route tables: 
+  PrivateSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref MyPrivateSubnet1
+      RouteTableId: !Ref PrivateRouteTable
+  PrivateSubnetBRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnetB
+      RouteTableId: !Ref PrivateRouteTable
   # Creation of an EC2 instance
   MyEC2Instance1:
     Type: "AWS::EC2::Instance"
