@@ -82,7 +82,6 @@ Resources:
   # NAT Gateway:
   NATGateway:
     Type: AWS::EC2::NatGateway
-    Condition: 
     condition: BuildMyPrivateSubnet1
     Properties:
       AllocationId: !GetAtt ElasticIPAddress.AllocationId
