@@ -12,6 +12,9 @@ Parameters:
 Conditions:
   BuildMyPrivateSubnet1: !Not [ !Equals [ !Ref NumberOfAZs, 1 ]] 
   BuildMyPublicSubnet1: !Not [ !Equals [ !Ref NumberOfAZs, 1 ]] 
+  BuildPrivateSubnetComp1: !Equals [!Ref MyPrivateSubnet1,True ]
+  BuildPublicSubnetComp1: !Equals [!Ref MyPublicSubnet1,True ]
+  BuildPrivateAndPublicSubnetComp1: !And[!Equals[!Ref MyPrivateSubnet1,True]],!Equals[!Ref MyPublicSubnet1,True]]
 Resources:
 # VPC for our stack
   MyVPC1:
@@ -59,6 +62,7 @@ Resources:
   # NAT Gateway:
   NATGateway:
     Type: AWS::EC2::NatGateway
+    Condition: BuildPrivateAndPublicSubnetComp1
     Properties:
       AllocationId: !GetAtt ElasticIPAddress.AllocationId
       SubnetId: !Ref MyPublicSubnet1
@@ -68,11 +72,13 @@ Resources:
         Value: !Join ['NAT-', [!Ref "AWS::StackName"]]
   ElasticIPAddress:
    Type: AWS::EC2::EIP
+   Condition: BuildPrivateAndPublicSubnetComp1
    Properties:
      Domain: VPC
   # Some route tables for our subnets:
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
+    Condition: BuildPublicSubnetComp1
     Properties:
       VpcId: !Ref MyVPC1
       Tags:
@@ -82,6 +88,7 @@ Resources:
   # Public route table has direct routing to IGW:      
   PublicRoute1:   
     Type: AWS::EC2::Route
+    Condition: BuildPublicSubnetComp1
     DependsOn: AttachGateway
     Properties:
       RouteTableId: !Ref PublicRouteTable
@@ -90,6 +97,7 @@ Resources:
   # Private route table:
   PrivateRouteTable:
     Type: AWS::EC2::RouteTable
+    Condition: BuildPrivateSubnetComp1
     Properties:
       VpcId: !Ref MyVPC1
       Tags:
@@ -99,6 +107,7 @@ Resources:
   # Private route table routing to NAT Gateway
   PrivateRoute1:            
     Type: AWS::EC2::Route
+    Condition: BuildPrivateSubnetComp1
     Properties:
       RouteTableId: !Ref PrivateRouteTable
       DestinationCidrBlock: 0.0.0.0/0
@@ -107,12 +116,14 @@ Resources:
   # Attach the public subnets to public route tables,  
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
+    Condition: BuildPublicSubnetComp1
     Properties:
       SubnetId: !Ref MyPublicSubnet1
       RouteTableId: !Ref PublicRouteTable
   # Attach the private subnets to private route tables: 
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
+    Condition: BuildPrivateSubnetComp1
     Properties:
       SubnetId: !Ref MyPrivateSubnet1
       RouteTableId: !Ref PrivateRouteTable
