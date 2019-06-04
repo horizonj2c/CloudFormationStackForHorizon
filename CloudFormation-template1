@@ -15,15 +15,14 @@ Resources:
   MySubnet1:
     Type: "AWS::EC2::Subnet"
     Properties:
+      VpcId: !Ref MyVPC1
       AssignIpv6AddressOnCreation: False
-      AvailabilityZone: 
+      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
       CidrBlock: 172.31.255.0/24
-      Ipv6CidrBlock: String
-      MapPublicIpOnLaunch: Boolean
       Tags:
         - 
           Key: Name
-          Value: !Join ['', [!Ref "AWS::StackName", "-Private subnet" ]]
+          Value: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]
       VpcId: String
  # Internet access for the VPC     
   InternetGateway:
