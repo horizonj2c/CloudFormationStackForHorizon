@@ -51,7 +51,7 @@ Resources:
       Tags:
       - 
         Key: Name
-        Value: ['NAT-', [!Ref "AWS::StackName"]
+        Value: !Join ['NAT-', [!Ref "AWS::StackName"]]
   ElasticIPAddress:
    Type: AWS::EC2::EIP
    Properties:
