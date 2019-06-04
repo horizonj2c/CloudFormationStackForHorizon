@@ -161,13 +161,13 @@ Outputs:
     Export:
       Name: !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
   PublicSubnet1:
-    Condition: BuildPublicSubnetComp1
+  #  Condition: BuildPublicSubnetComp1
     Description: First Public Subnet
     Value: !Ref BuildPublicSubnetComp1
     Export:
       Name: !Join ['', [!Ref "AWS::StackName", "-PublicSubnet" ]]
   PrivateSubnet1:
-    Condition: BuildPrivateSubnetComp1
+  #  Condition: BuildPrivateSubnetComp1
     Description: First Private Subnet
     Value: !Ref PrivateSubnetA
     Export:
