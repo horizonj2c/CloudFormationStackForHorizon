@@ -174,6 +174,23 @@ Resources:
         FromPort: '22'
         ToPort: '22'
         CidrIp: 0.0.0.0/0
+  PrivateSecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Condition: BuildMyPrivateSubnet1
+    Properties:
+      GroupName: !Join ['PrivateSG-', [!Ref "AWS::StackName"]]
+      GroupDescription: Enable communication inside the VPC
+      VpcId: !Ref MyVPC1
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '66535'
+        CidrIp: !GetAtt MyVPC1.CidrBlock
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '66535'
+        CidrIp: !GetAtt MyVPC1.CidrBlock      
   PrivateInstance1:
     Type: AWS::EC2::Instance
     DependsOn: PrivateRoute1                           
