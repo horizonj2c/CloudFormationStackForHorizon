@@ -1,6 +1,40 @@
 AWSTemplateFormatVersion: 2010-09-09
+# This CloudFormation template deploys a basic VPC / Network. It has been created for some experimentation
 Resources:
-  MyEC2Instance2:
+# VPC for our stack
+  MyVPC1:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 172.31.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+      - Key: Name
+        Value:  !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
+# Subnet form the VPC           
+  MySubnet1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AssignIpv6AddressOnCreation: False
+      AvailabilityZone: 
+      CidrBlock: 172.31.255.0/24
+      Ipv6CidrBlock: String
+      MapPublicIpOnLaunch: Boolean
+      Tags:
+        - 
+          Key: Name
+          Value: !Join ['', [!Ref "AWS::StackName", "-Private subnet" ]]
+      VpcId: String
+ # Internet access for the VPC     
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    DependsOn: MyVPC1
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVPC1
+      InternetGatewayId: !Ref InternetGateway
+   MyEC2Instance1:
     Type: "AWS::EC2::Instance"
     Properties:
       ImageId: "ami-030dbca661d402413"
@@ -8,17 +42,4 @@ Resources:
       Tags:
         -
           Key: "Name"
-          Value: "TestCloudFormation" 
-  MySubnet1:
-    Type: "AWS::EC2::Subnet"
-    Properties:
-      AssignIpv6AddressOnCreation: False
-      AvailabilityZone: 
-      CidrBlock: 172.31.255.0/16
-      Ipv6CidrBlock: String
-      MapPublicIpOnLaunch: Boolean
-      Tags:
-        - 
-          Key: "Resource"
-          Value: "Tag"
-      VpcId: String
+          Value: !Join ['', [!Ref "AWS::StackName", "instance1" ]]
