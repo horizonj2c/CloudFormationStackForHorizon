@@ -103,15 +103,3 @@ Resources:
       SubnetId: !Ref MyPrivateSubnet1
       RouteTableId: !Ref PrivateRouteTable
   # Creation of an EC2 instance
-  MyEC2Instance1:
-    Type: "AWS::EC2::Instance"
-    Properties:
-      ImageId: "ami-030dbca661d402413"
-      InstanceType: "t2.micro"
-      NetworkInterfaces:
-        SubnetId: !Ref MyPublicSubnet1
-        AssociatePublicIpAddress: true
-      Tags:
-        -
-          Key: "Name"
-          Value: !Join ['', [!Ref "AWS::StackName", "instance1" ]]
