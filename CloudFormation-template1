@@ -76,8 +76,8 @@ Resources:
   NATGateway:
     Type: AWS::EC2::NatGateway
     Condition: 
-      - BuildMyPublicSubnet1
-      - BuildMyPrivateSubnet1
+      - BuildPrivateSubnetComp1
+      - BuildPublicSubnetComp1
     Properties:
       AllocationId: !GetAtt ElasticIPAddress.AllocationId
       SubnetId: !Ref MyPublicSubnet1
