@@ -1,14 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
 # This CloudFormation template deploys a basic VPC / Network. It has been created for some experimentation
-Parameters:
-  NumberOfAZs:
-    Type: Number
-    AllowedValues:
-    - 1
-    - 2
-    - 3
-    Default: 2
-    Description:  How many Availability Zones do you wish to utilize?
 Conditions:
   BuildMyPrivateSubnet1: !Not [ !Equals [ !Ref NumberOfAZs, 1 ]] 
   BuildMyPublicSubnet1: !Not [ !Equals [ !Ref NumberOfAZs, 1 ]] 
@@ -127,3 +118,22 @@ Resources:
     Properties:
       SubnetId: !Ref MyPrivateSubnet1
       RouteTableId: !Ref PrivateRouteTable
+#Output section expected      
+Outputs:
+  VPC:
+    Description: VPC of the base network
+    Value: !Ref MyVPC1
+    Export:
+      Name: !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
+  PublicSubnet1:
+    Condition: BuildPublicSubnetComp1
+    Description: First Public Subnet
+    Value: !Ref BuildPublicSubnetComp1
+    Export:
+      Name: !Join ['', [!Ref "AWS::StackName", "-PublicSubnet" ]]
+  PrivateSubnet1:
+    Condition: BuildPublicSubnetComp1
+    Description: First Private Subnet
+    Value: !Ref PrivateSubnetA
+    Export:
+      Name: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]
