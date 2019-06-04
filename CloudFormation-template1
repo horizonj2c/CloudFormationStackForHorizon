@@ -11,19 +11,28 @@ Resources:
       Tags:
       - Key: Name
         Value:  !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
-# Subnet form the VPC           
-  MySubnet1:
+# Private Subnet form the VPC           
+  MyPrivateSubnet1:
     Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref MyVPC1
-      AssignIpv6AddressOnCreation: False
       AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
       CidrBlock: 172.31.255.0/24
       Tags:
         - 
           Key: Name
           Value: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]
-      VpcId: String
+ # Public Subnet form the VPC           
+  MyPublicSubnet1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref MyVPC1
+      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
+      CidrBlock: 172.31.1.0/24
+      Tags:
+        - 
+          Key: Name
+          Value: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]         
  # Internet access for the VPC     
   InternetGateway:
     Type: AWS::EC2::InternetGateway
