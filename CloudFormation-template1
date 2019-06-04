@@ -159,7 +159,7 @@ Resources:
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '0'
-        ToPort: '66535'
+        ToPort: '65535'
         CidrIp: !GetAtt MyVPC1.CidrBlock
       - IpProtocol: tcp
         FromPort: '22'
@@ -168,7 +168,7 @@ Resources:
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: '0'
-        ToPort: '66535'
+        ToPort: '65535'
         CidrIp: !GetAtt MyVPC1.CidrBlock
       - IpProtocol: tcp
         FromPort: '22'
