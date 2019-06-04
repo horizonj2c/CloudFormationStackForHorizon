@@ -176,7 +176,7 @@ Resources:
         CidrIp: 0.0.0.0/0
   PrivateInstance1:
     Type: AWS::EC2::Instance
-    DependsOn: PrivateSecurityGroup1                           
+    DependsOn: PrivateRoute1                           
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
       InstanceType: t2.small                          
