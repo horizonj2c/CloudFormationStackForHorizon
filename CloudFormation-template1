@@ -151,6 +151,33 @@ Resources:
     Properties:
       SubnetId: !Ref MyPrivateSubnet1
       RouteTableId: !Ref PrivateRouteTable
+  # Security group for Public subnet.  Ingress from internet IPs but TCP port 22 only:
+  PublicSecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Condition: BuildMyPublicSubnet1
+    DependsOn: AttachGateway
+    Properties:
+      GroupName: !Join ['PublicSG-', [!Ref "AWS::StackName"]]
+      GroupDescription: Enable internet access but ony on port 22
+      VpcId: !Ref MyVPC1
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '66535'
+        CidrIp: !GetAtt MyVPC1.CidrBlock
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '66535'
+        CidrIp: !GetAtt MyVPC1.CidrBlock
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
 #Output section expected      
 Outputs:
   VPC:
