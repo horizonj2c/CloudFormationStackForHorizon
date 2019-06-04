@@ -42,7 +42,7 @@ Resources:
     Properties:
       VpcId: !Ref MyVPC1
       InternetGatewayId: !Ref InternetGateway
-   MyEC2Instance1:
+  MyEC2Instance1:
     Type: "AWS::EC2::Instance"
     Properties:
       ImageId: "ami-030dbca661d402413"
