@@ -82,7 +82,7 @@ Resources:
   # NAT Gateway:
   NATGateway:
     Type: AWS::EC2::NatGateway
-    condition: BuildMyPrivateSubnet1
+    Condition: BuildMyPrivateSubnet1
     Properties:
       AllocationId: !GetAtt ElasticIPAddress.AllocationId
       SubnetId: !Ref MyPublicSubnet1
@@ -92,7 +92,7 @@ Resources:
         Value: !Join ['NAT-', [!Ref "AWS::StackName"]]
   ElasticIPAddress:
    Type: AWS::EC2::EIP
-   condition: BuildMyPrivateSubnet1
+   Condition: BuildMyPrivateSubnet1
    Properties:
      Domain: VPC
   # Some route tables for our subnets:
