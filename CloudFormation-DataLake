@@ -18,8 +18,8 @@ Resources:
         BucketARN
           arn:aws:s3:::horizonbucket1datalake
       ExtendedS3DestinationConfiguration:
-        BucketARN:
-          arn:aws:s3:::horizonbucket2datalake
+        KinesisStreamARN: arn:aws:s3:::horizonbucket2datalake
+        RoleARN: arn:aws:iam::028500465483:role/KinesisAccessS3
         BufferingHints:
           IntervalInSeconds: 60
           SizeInMBs: 50
