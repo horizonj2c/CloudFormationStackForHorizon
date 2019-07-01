@@ -14,7 +14,8 @@ Resources:
   HorizonKinesis  
     Type: AWS::KinesisFirehose::DeliveryStream
     Properties: 
-      DeliveryStreamType: DirectPut
+      DeliveryStreamType: 
+       DirectPut
       KinesisStreamSourceConfiguration: 
        arn:aws:s3:::horizonbucket1datalake
       S3DestinationConfiguration: 
