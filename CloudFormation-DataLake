@@ -3,4 +3,4 @@ Resources:
   HorizonBucket1Datalake:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: HorizonBucket1Datalake
+      BucketName: horizonbucket1datalake
