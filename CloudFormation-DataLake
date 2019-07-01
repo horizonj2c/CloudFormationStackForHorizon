@@ -23,3 +23,4 @@ Resources:
         BufferingHints:
           IntervalInSeconds: 60
           SizeInMBs: 50
+          CompressionFormat: UNCOMPRESSED
