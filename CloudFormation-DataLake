@@ -5,8 +5,18 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket1datalake 
-   #Bucket 2 Data Lake
+  #Bucket 2 Data Lake
   HorizonBucket2Datalake:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket2datalake
+  #Kinesis 
+  HorizonKinesis  
+    Type: AWS::KinesisFirehose::DeliveryStream
+    Properties: 
+      DeliveryStreamType: DirectPut
+      KinesisStreamSourceConfiguration: 
+       arn:aws:s3:::horizonbucket1datalake
+      S3DestinationConfiguration: 
+       arn:aws:s3:::horizonbucket2datalake
+
