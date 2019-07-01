@@ -20,3 +20,6 @@ Resources:
       ExtendedS3DestinationConfiguration:
         BucketARN:
           arn:aws:s3:::horizonbucket2datalake
+        BufferingHints:
+          IntervalInSeconds: 60
+          SizeInMBs: 50
