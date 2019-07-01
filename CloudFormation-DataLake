@@ -1,6 +1,13 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
+  #Bucket1 Data lake
   HorizonBucket1Datalake:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket1datalake
+   
+   #Bucket 2 Data Lake
+   HorizonBucket2Datalake:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: horizonbucket2datalake
