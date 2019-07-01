@@ -1,34 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-# VPC for our stack
-  MyVPC1:
-    Type: AWS::EC2::VPC
+  HorizonBucket1Datalake:
+    Type: AWS::S3::Bucket
     Properties:
-      CidrBlock: 172.31.0.0/16
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
-      Tags:
-      - Key: Name
-        Value:  !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
-# Private Subnet form the VPC           
-  MyPrivateSubnet1:
-    Type: "AWS::EC2::Subnet"
-    Properties:
-      VpcId: !Ref MyVPC1
-      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
-      CidrBlock: 172.31.255.0/24
-      Tags:
-        - 
-          Key: Name
-          Value: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]
- # Public Subnet form the VPC           
-  MyPublicSubnet1:
-    Type: "AWS::EC2::Subnet"
-    Properties:
-      VpcId: !Ref MyVPC1
-      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
-      CidrBlock: 172.31.1.0/24
-      Tags:
-        - 
-          Key: Name
-          Value: !Join ['', [!Ref "AWS::StackName", "-PublicSubnet" ]]
+      BucketName: HorizonBucket1Datalake
