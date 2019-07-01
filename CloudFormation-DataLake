@@ -24,3 +24,4 @@ Resources:
           IntervalInSeconds: 60
           SizeInMBs: 50
         CompressionFormat: UNCOMPRESSED
+        RoleARN: arn:aws:iam::028500465483:role/KinesisAccessS3
