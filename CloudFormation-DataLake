@@ -14,9 +14,9 @@ Resources:
     Type: AWS::KinesisFirehose::DeliveryStream
     Properties: 
       DeliveryStreamType: DirectPut
-      KinesisStreamSourceConfiguration: 
-        BucketARN: arn:aws:s3:::horizonbucket1datalake
-        RoleARN: arn:aws:iam::028500465483:role/KinesisAccessS3
+      #KinesisStreamSourceConfiguration: 
+        #KinesisStreamARN:
+        #RoleARN:
       ExtendedS3DestinationConfiguration:
         BucketARN: arn:aws:s3:::horizonbucket2datalake
         BufferingHints:
