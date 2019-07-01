@@ -13,7 +13,6 @@ Resources:
 # Private Subnet form the VPC           
   MyPrivateSubnet1:
     Type: "AWS::EC2::Subnet"
-    Condition: BuildMyPrivateSubnet1
     Properties:
       VpcId: !Ref MyVPC1
       AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
@@ -25,7 +24,6 @@ Resources:
  # Public Subnet form the VPC           
   MyPublicSubnet1:
     Type: "AWS::EC2::Subnet"
-    Condition: BuildMyPublicSubnet1
     Properties:
       VpcId: !Ref MyVPC1
       AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
