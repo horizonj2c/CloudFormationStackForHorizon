@@ -10,7 +10,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket2datalake
-  #Kinesis 
   HorizonKinesis  
     Type: AWS::KinesisFirehose::DeliveryStream
     Properties: 
