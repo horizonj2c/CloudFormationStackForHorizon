@@ -4,10 +4,9 @@ Resources:
   HorizonBucket1Datalake:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: horizonbucket1datalake
-   
+      BucketName: horizonbucket1datalake 
    #Bucket 2 Data Lake
-   HorizonBucket2Datalake:
+  HorizonBucket2Datalake:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket2datalake
