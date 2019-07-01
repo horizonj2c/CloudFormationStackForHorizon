@@ -10,7 +10,7 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket2datalake
-  HorizonKinesis  
+  HorizonKinesis:  
     Type: AWS::KinesisFirehose::DeliveryStream
     Properties: 
       DeliveryStreamType: DirectPut
