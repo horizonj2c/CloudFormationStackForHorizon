@@ -15,11 +15,10 @@ Resources:
     Properties: 
       DeliveryStreamType: DirectPut
       KinesisStreamSourceConfiguration: 
-        BucketARN
-          arn:aws:s3:::horizonbucket1datalake
-      ExtendedS3DestinationConfiguration:
-        KinesisStreamARN: arn:aws:s3:::horizonbucket2datalake
+        KinesisStreamARN: arn:aws:s3:::horizonbucket1datalake
         RoleARN: arn:aws:iam::028500465483:role/KinesisAccessS3
+      ExtendedS3DestinationConfiguration:
+        BucketARN: arn:aws:s3:::horizonbucket2datalake
         BufferingHints:
           IntervalInSeconds: 60
           SizeInMBs: 50
