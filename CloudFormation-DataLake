@@ -44,7 +44,7 @@ Resources:
                     - "/*"  
   EventFirehose:
     Type: AWS::KinesisFirehose::DeliveryStream
-    Condition: KinesisRole
+    DependsOn: KinesisRole
     Properties:
       S3DestinationConfiguration:
         BucketARN:
