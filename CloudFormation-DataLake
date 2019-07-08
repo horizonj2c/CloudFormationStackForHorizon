@@ -52,7 +52,7 @@ Resources:
         BufferingHints:
           IntervalInSeconds: 60
           SizeInMBs: 10
-        CompressionFormat: GZIP
+        CompressionFormat: UNCOMPRESSED
         Prefix: events/
         RoleARN:
           Fn::GetAtt: [ KinesisRole, Arn ]
