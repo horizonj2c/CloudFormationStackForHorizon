@@ -42,3 +42,16 @@ Resources:
                   - ""
                   - - Fn::GetAtt: [ HorizonBucket2Datalake , Arn ]
                     - "/*"  
+  EventFirehose:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    Properties:
+      S3DestinationConfiguration:
+        BucketARN:
+          Fn::GetAtt: [ HorizonBucket2Datalake, Arn ]
+        BufferingHints:
+          IntervalInSeconds: 60
+          SizeInMBs: 10
+        CompressionFormat: GZIP
+        Prefix: events/
+        RoleARN:
+          Fn::GetAtt: [ KinesisRole, Arn ]
