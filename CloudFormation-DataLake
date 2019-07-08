@@ -10,17 +10,35 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: horizonbucket2datalake
-  HorizonKinesis:  
-    Type: AWS::KinesisFirehose::DeliveryStream
-    Properties: 
-      DeliveryStreamType: DirectPut
-      #KinesisStreamSourceConfiguration: 
-        #KinesisStreamARN:
-        #RoleARN:
-      ExtendedS3DestinationConfiguration:
-        BucketARN: arn:aws:s3:::horizonbucket2datalake
-        BufferingHints:
-          IntervalInSeconds: 60
-          SizeInMBs: 50
-        CompressionFormat: UNCOMPRESSED
-        RoleARN: arn:aws:iam::028500465483:role/KinesisAccessS3
+  KinesisRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - firehose.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: KinesisRolePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+                - s3:AbortMultipartUpload
+                - s3:GetBucketLocation
+                - s3:GetObject
+                - s3:ListBucket
+                - s3:ListBucketMultipartUploads
+                - s3:PutObject
+              Resource:
+                - Fn::GetAtt: [ HorizonBucket2Datalake , Arn ]
+                - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt: [ HorizonBucket2Datalake , Arn ]
+                    - "/*"  
