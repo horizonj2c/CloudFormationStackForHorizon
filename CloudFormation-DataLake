@@ -56,3 +56,7 @@ Resources:
         Prefix: events/
         RoleARN:
           Fn::GetAtt: [ KinesisRole, Arn ]
+flows: 
+ - 
+  filePattern: "/tmp/app.log*"
+  deliveryStream: jenkinsstack-DataLake-EventFirehose-1MTMIXF2FY6TT
