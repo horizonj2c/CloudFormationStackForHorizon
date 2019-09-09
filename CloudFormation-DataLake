@@ -60,4 +60,3 @@ flows:
   firehose.endpoint: https://eu-west-1.console.aws.amazon.com/firehose/home?region=eu-west-1#/details/jenkinsstack-DataLake-EventFirehose-JKASPKL3VF5V
 -filePattern: "/tmp/app.log*"
   deliveryStream: EventFirehose
- 
