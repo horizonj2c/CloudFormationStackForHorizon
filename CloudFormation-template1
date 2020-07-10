@@ -207,7 +207,7 @@ Resources:
       Tags:
       - 
         Key: Name
-        Value: !Join ['PublicInstance1-', [!Ref "AWS::StackName"]]
+        Value: "QGISInstance"
 #Output section expected      
 Outputs:
   VPC:
