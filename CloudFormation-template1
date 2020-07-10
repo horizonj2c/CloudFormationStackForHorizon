@@ -196,7 +196,8 @@ Resources:
     DependsOn: PublicRoute1                           
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
-      InstanceType: t2.small                          
+      InstanceType: t2.small   
+      KeyName: "QGISInstanceKeyPair"
       NetworkInterfaces:
       - DeviceIndex: '0'
         SubnetId: !Ref MyPublicSubnet1         
